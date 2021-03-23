@@ -1,4 +1,4 @@
-# Kirjasovellus
+# Kirjapäiväkirja
 
 ## Sovelluksen tarkoitus
 Kirjasovellus on sovellus, jossa voi pitää kirjaa lukemistaan kirjoista. 
