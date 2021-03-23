@@ -15,5 +15,5 @@ Jokaisella käyttäjällä on oma hyllynäkymä, johon voi lisätä tietokannast
 ### Muuta
 Jos aikataulun puitteissa ehtii, niin luodaan myös kaveritoiminta ja etusivu, jossa kavereiden lukuedistymistä ja arvosteluja voi tarkkailla.
 
-### Alustava_tietokantakaavio
+### Alustava tietokantakaavio
 <img src="https://github.com/Juboskar/tsoha-projekti/blob/main/alustava_tietokantakaavio.png" width="1000">
