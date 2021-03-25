@@ -1,9 +1,0 @@
-{% extends "layout.html" %}
-{% block content %}
-{% if session.username %}
-<p>Olet kirjautunut nimellä {{ session.username }}</p>
-<a href="/logout">Kirjaudu ulos</a>
-{% else %}
-<p>hallo</p>
-{% endif %}
-{% endblock %}

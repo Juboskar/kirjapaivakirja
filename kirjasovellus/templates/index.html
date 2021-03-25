@@ -1,16 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if session.username %}
+<p>Loremipsum</p>
+{% else %}
 <p>Etsi kirjoja, pidä päiväkirjaa lukemistasti kirjoista, suosittele kavereillesi ja kirjoita arvosteluja</p>
 
-    <h2>Rekisteröidy:</h2>
-    <form action="/register" method="POST">
-        <label for="username">Käyttäjätunnus:</label>
-        <input type="text" name="username" class="form-control"><br>
-        <label for="password">Salasana:</label>
-        <input type="password" name="password" class="form-control"><br>
-        <input type="submit" value="Rekisteröidy" class="btn btn-primary">
-    </form>
+<h2>Rekisteröidy:</h2>
+<form action="/register" method="POST">
+    <label for="username">Käyttäjätunnus:</label>
+    <input type="text" name="username" class="form-control"><br>
+    <label for="password">Salasana:</label>
+    <input type="password" name="password" class="form-control"><br>
+    <input type="submit" value="Rekisteröidy" class="btn btn-primary">
+</form>
 
-    <h4>Onko sinulla jo tunnukset?</h4>
-    <a href="/login">Kirjaudu sisään täältä</a>
+<h4>Onko sinulla jo tunnukset?</h4>
+<a href="/login">Kirjaudu sisään täältä</a>
+{% endif %}
 {% endblock %}
