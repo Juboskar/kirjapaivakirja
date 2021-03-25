@@ -59,7 +59,7 @@ def addbook():
     if books.add_new_book(title, author, genre, isbn, pages):
         return redirect("/search")
     else:
-        return("search.html", info = "Jokin meni pieleen")
+        return render_template("search.html", info = "Jokin meni pieleen")
 
 @app.route("/search")
 def search():
