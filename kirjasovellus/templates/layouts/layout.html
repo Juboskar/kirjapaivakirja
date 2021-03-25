@@ -13,7 +13,7 @@
             <a class="nav-link" href="/">Etusivu</a>
         </li>
         <li class="nav-item pill-1">
-            <a class="nav-link" href="/bookshelf">Hylly</a>
+            <a class="nav-link" href="/bookshelf">Kirjahylly</a>
         </li>
         <li class="nav-item pill-1">
             <a class="nav-link" href="/search">Hae kirjoja</a>
@@ -28,24 +28,25 @@
 
     <h2>Rekisteröidy:</h2>
     <form action="/register" method="POST">
-        <label for="username">Käyttäjätunnus:</label>
+        <label for="username1">Käyttäjätunnus:</label>
         <input type="text" name="username1" class="form-control"><br>
-        <label for="password">Salasana:</label>
+        <label for="password1">Salasana:</label>
         <input type="password" name="password1" class="form-control"><br>
         <input type="submit" value="Rekisteröidy" class="btn btn-primary">
     </form>
-    {{ register_ok }}
+    {{ register_status }}
     <br>
 
     <h2>Kirjaudu:</h2>
     <form action="/login" method="POST">
-        <label for="username">Käyttäjätunnus:</label>
+        <label for="username2">Käyttäjätunnus:</label>
         <input type="text" name="username2" class="form-control"><br>
-        <label for="password">Salasana:</label>
+        <label for="password2">Salasana:</label>
         <input type="password" name="password2" class="form-control"><br>
         <input type="submit" value="Kirjaudu" class="btn btn-primary">
     </form>
     <br>
+    {{ login_status }}
     {% endif %}
 
 </body>

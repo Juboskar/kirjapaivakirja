@@ -2,6 +2,7 @@ from app import app
 from flask import redirect, render_template, request, session
 from os import urandom
 import users
+import books
 
 @app.route("/")
 def index():
@@ -20,7 +21,7 @@ def register():
     register_ok_info = "Jokin meni pieleen. Voi olla, että käyttäjätunnus on varattu. Ongelman jatkuessa kannattaa koittaa jotain muuta käyttäjätunnusta."
     if register_ok:
         register_ok_info = "Rekisteröityminen onnistui, voit nyt kirjautua"
-    return render_template("index.html", register_ok=register_ok_info)
+    return render_template("index.html", register_status=register_ok_info)
 
 @app.route("/login")
 def login():
@@ -33,6 +34,9 @@ def login_result():
     if users.login(username, password):
         session["username"] = username
         session["csrf_token"] = urandom(16).hex()
+    else: 
+        login_status = "Sisäänkirjautuminen epäonnistui"
+        return render_template("index.html", login_status = login_status)
     return redirect("/")
 
 @app.route("/logout")
@@ -41,10 +45,21 @@ def logout():
     del session["csrf_token"]
     return redirect("/")
 
-# TODO
 @app.route("/bookshelf")
 def bookshelf():
     return render_template("bookshelf.html")
+
+@app.route("/addbook", methods=["POST"])
+def addbook():
+    title = request.form["title"]
+    author = request.form["author"]
+    genre = request.form["genre"]
+    isbn = request.form["isbn"]
+    pages = request.form["pages"]
+    if books.add_new_book(title, author, genre, isbn, pages):
+        return redirect("/search")
+    else:
+        return("search.html", info = "Jokin meni pieleen")
 
 @app.route("/search")
 def search():

@@ -3,6 +3,7 @@ body {
     max-width: 45em;
     font-family: 'Helvetica', 'Arial', sans-serif;
     background-color: lightgray;
+    margin-top: auto;
 }
 
 h2, h3, h4 {

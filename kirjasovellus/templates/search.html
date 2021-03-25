@@ -1,4 +1,67 @@
 {% extends "layouts/layout.html" %}
 {% block content %}
-<p>Tänne hakutoiminnallisuus</p>
+<h2>Hae kirjoja</h2>
+<form action="/result" method="GET">
+    <div class="form-check form-check-inline">
+        <input type="radio" name="search_term" value="1" id="radio1" class="form-check-input">
+        <label class="form-check-label" for="radio1">
+            Kaikki
+        </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input type="radio" name="search_term" value="2" id="radio2" class="form-check-input">
+        <label class="form-check-label" for="radio2">
+            Kirjan nimi
+        </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input type="radio" name="search_term" value="3" id="radio3" class="form-check-input">
+        <label class="form-check-label" for="radio3">
+            Kirjailija
+        </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input type="radio" name="search_term" value="4" id="radio4" class="form-check-input">
+        <label class="form-check-label" for="radio4">
+            Genre
+        </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input type="radio" name="search_term" value="5" id="radio5" class="form-check-input">
+        <label class="form-check-label" for="radio5">
+            ISBN
+        </label>
+    </div>
+    <br>
+    <label for="query">Hakusana: </label>
+    <input type="text" name="query" class="form-control">
+    <br>
+    <input type="submit" value="Hae" class="btn btn-primary">
+</form>
+
+<br>
+
+<h2>Lisää tietue</h2>
+<p>Varmistathan ennen uuden tietueen lisäämistä, ettei vastaavaa ole vielä lisätty. Tarkista, että tiedot tulevat oikein.</p>
+<p>{{ info }}</p>
+<form action="/addbook" method="POST">
+    <label for="title">Kirjan nimi:</label>
+    <input type="text" name="title" class="form-control"><br>
+
+    <label for="author">Kirjailija:</label>
+    <input type="text" name="author" class="form-control"><br>
+
+    <label for="genre">Genre:</label>
+    <input type="text" name="genre" class="form-control"><br>
+
+    <label for="isbn">ISBN:</label>
+    <input type="text" name="isbn" class="form-control"><br>
+    
+    <label for="pages">Sivumäärä:</label>
+    <input type="text" name="pages" class="form-control"><br>
+
+    <input type="submit" value="Lisää tietue" class="btn btn-primary">
+</form>
+
+
 {% endblock %}
