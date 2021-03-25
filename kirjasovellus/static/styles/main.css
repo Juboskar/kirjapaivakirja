@@ -18,8 +18,8 @@ a {
 }
 
 .header {
-    background: lightblue;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    background: lightgreen;
+    font-family: 'Helvetica', 'Arial', sans-serif;
     font-weight: bold;
     padding: 1em 1em;
     font-size: 2em;
@@ -43,4 +43,28 @@ a {
 
 .form-control {
     border-color: black;
+}
+
+.nav {
+    margin-top: 15px;
+}
+
+.nav-tabs .pill-1 .nav-link:not(.active) {
+    background-color:lightgray;
+    color: darkblue;
+    border: 1px solid lightgray;
+    border-bottom-color: black;
+}
+
+.nav-tabs .pill-1 .nav-link {
+    background-color: lightblue;
+    color: black;
+    border: 1px solid black;
+}
+
+.nav-tabs .pill-2 .nav-link:not(.active) {
+    background-color:lightgray;
+    color: darkblue;
+    border: 1px solid black;
+    border-bottom-color: black;
 }

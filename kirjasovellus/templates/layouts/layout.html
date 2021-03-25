@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/styles/main.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<body>
+    <div class="header">
+        <h1>Kirjapäiväkirja</h1>
+    </div>
+    {% if session.username %}
+    <ul class="nav nav-tabs nav-fill">
+        <li class="nav-item pill-1">
+            <a class="nav-link" href="/">Etusivu</a>
+        </li>
+        <li class="nav-item pill-1">
+            <a class="nav-link" href="/bookshelf">Hylly</a>
+        </li>
+        <li class="nav-item pill-1">
+            <a class="nav-link" href="/search">Hae kirjoja</a>
+        </li>
+        <li class="nav-item pill-2">
+            <a class="nav-link" href="/logout">Kirjaudu ulos</a> 
+        </li>
+    </ul>
+    {% block content %}{% endblock %}
+    {% else %}
+    <p>Etsi kirjoja, pidä päiväkirjaa lukemistasti kirjoista, suosittele kavereillesi ja kirjoita arvosteluja</p>
+
+    <h2>Rekisteröidy:</h2>
+    <form action="/register" method="POST">
+        <label for="username">Käyttäjätunnus:</label>
+        <input type="text" name="username1" class="form-control"><br>
+        <label for="password">Salasana:</label>
+        <input type="password" name="password1" class="form-control"><br>
+        <input type="submit" value="Rekisteröidy" class="btn btn-primary">
+    </form>
+    {{ register_ok }}
+    <br>
+
+    <h2>Kirjaudu:</h2>
+    <form action="/login" method="POST">
+        <label for="username">Käyttäjätunnus:</label>
+        <input type="text" name="username2" class="form-control"><br>
+        <label for="password">Salasana:</label>
+        <input type="password" name="password2" class="form-control"><br>
+        <input type="submit" value="Kirjaudu" class="btn btn-primary">
+    </form>
+    <br>
+    {% endif %}
+
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+    $('a[href$="' + location.pathname + '"]').addClass('active');
+});
+</script>
