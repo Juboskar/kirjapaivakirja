@@ -1,0 +1,46 @@
+body {
+    margin: auto;
+    max-width: 45em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background-color: lightgray;
+}
+
+h2, h3, h4 {
+    margin-top: 15px;
+}
+
+p {
+    margin-top: 15px;
+}
+
+a {
+    color: darkblue;
+}
+
+.header {
+    background: lightblue;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-weight: bold;
+    padding: 1em 1em;
+    font-size: 2em;
+    border: 5px solid black;
+    border-top: 0px;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.btn-primary {
+    background-color: lightblue;
+    color: black;
+    border-color: black;
+}
+
+.btn-primary:hover {
+    background-color: lightseagreen;
+    color: black;
+    border-color: black;
+}
+
+.form-control {
+    border-color: black;
+}
