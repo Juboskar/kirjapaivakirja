@@ -75,3 +75,9 @@ def findbooks():
     query = request.args["query"]
     result_books = books.find_books(query, selection)
     return render_template("search.html", books = result_books[:30])
+
+@app.route("/search/findbooks/<int:id>")
+def findbooks_id(id):
+    book = books.find_book_by_id(id)
+    print(book)
+    return render_template("book.html", book = book)

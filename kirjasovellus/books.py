@@ -37,3 +37,14 @@ def find_books(query:str, selection:int):
 
     except exc.SQLAlchemyError:
         return []
+
+    
+def find_book_by_id(id : int):
+    try:
+        sql = "SELECT * FROM books WHERE id=:id"
+        result = db.session.execute(sql, {"id":id})
+        book = result.fetchone()
+        return book
+
+    except exc.SQLAlchemyError:
+        return None
