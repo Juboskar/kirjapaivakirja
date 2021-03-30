@@ -24,3 +24,12 @@ def login(username: str, password: str):
             return True
         else:
             return False # invalid password
+
+def get_user_id_by_username(username:str):
+    try:   
+        sql = "SELECT id FROM users WHERE username=:username"
+        result = db.session.execute(sql, {"username":username})
+        user_id = result.fetchone()[0]
+        return user_id
+    except: 
+        pass # todo

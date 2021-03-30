@@ -61,17 +61,23 @@ a {
     border-bottom-color: black;
 }
 
+.nav-tabs .pill-1 .nav-link:not(.active):hover {
+    background-color:lightgrey;
+    color: black;
+    border-color: lightgrey;
+    border-bottom-color: black;
+}
+
 .nav-tabs .pill-1 .nav-link {
     background-color: lightblue;
     color: black;
     border: 1px solid black;
 }
 
-.nav-tabs .pill-2 .nav-link:not(.active) {
-    background-color:lightgray;
-    color: darkblue;
+.nav-tabs .pill-1 .nav-link:hover {
+    background-color: lightseagreen;
+    color: black;
     border: 1px solid black;
-    border-bottom-color: black;
 }
 
 .bg-custom {

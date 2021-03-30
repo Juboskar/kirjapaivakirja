@@ -3,6 +3,9 @@ from flask import redirect, render_template, request, session
 from os import urandom
 import users
 import books
+import bookshelf
+
+# LOGIN 
 
 @app.route("/")
 def index():
@@ -36,7 +39,7 @@ def login_result():
         session["username"] = username
         session["csrf_token"] = urandom(16).hex()
     else: 
-        login_status = "Sisäänkirjautuminen epäonnistui"
+        login_status = "Sisäänkirjautuminen epäonnistui" # todo: nämä kovakoodaukset html:ään
         return render_template("index.html", login_status = login_status)
     return redirect("/")
 
@@ -46,16 +49,31 @@ def logout():
     del session["csrf_token"]
     return redirect("/")
 
+# BOOKSHELF
+
 @app.route("/bookshelf")
-def bookshelf():
+def go_to_bookshelf():
     return render_template("bookshelf.html")
+
+@app.route("/bookshelf/add", methods=["POST"])
+def add_to_bookshelf():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
+    book_id = request.form["book_id"]
+    username = session["username"]
+    user_id = users.get_user_id_by_username(username)
+    print(bookshelf.add_new_book(user_id, book_id))
+    return redirect("/search/findbooks/" + book_id)
+
+
+# SEARCH
 
 @app.route("/search")
 def search():
     return render_template("search.html")
 
 @app.route("/search/addbook", methods=["POST"])
-def addbook():
+def add_book():
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
     title = request.form["title"]
@@ -69,15 +87,16 @@ def addbook():
         return render_template("search.html", info="Jokin meni pieleen")
 
 @app.route("/search/findbooks")
-def findbooks():
-    selection = request.args.getlist("search_term")
-    print(selection)
+def find_books():
+    selection = request.args.getlist("criteria")
     query = request.args["query"]
     result_books = books.find_books(query, selection)
     return render_template("search.html", books = result_books[:30])
 
 @app.route("/search/findbooks/<int:id>")
-def findbooks_id(id):
+def find_books_id(id):
     book = books.find_book_by_id(id)
-    print(book)
-    return render_template("book.html", book = book)
+    username = session["username"]
+    user_id = users.get_user_id_by_username(username)
+    info = bookshelf.check_if_in_bookshelf(user_id, id)
+    return render_template("book.html", book = book, info = info)

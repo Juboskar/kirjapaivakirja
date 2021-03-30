@@ -3,31 +3,31 @@
 <h2>Hae kirjoja</h2>
 <form action="/search/findbooks" method="GET">
     <div class="form-check form-check-inline">
-        <input type="checkbox" name="search_term" value="1" id="radio1" class="form-check-input" checked="checked">
+        <input type="checkbox" name="criteria" value="1" id="radio1" class="form-check-input" checked="checked">
         <label class="form-check-label" for="radio1">
             Kaikki
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="checkbox" name="search_term" value="2" id="radio2" class="form-check-input">
+        <input type="checkbox" name="criteria" value="2" id="radio2" class="form-check-input">
         <label class="form-check-label" for="radio2">
             Kirjan nimi
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="checkbox" name="search_term" value="3" id="radio3" class="form-check-input">
+        <input type="checkbox" name="criteria" value="3" id="radio3" class="form-check-input">
         <label class="form-check-label" for="radio3">
             Kirjailija
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="checkbox" name="search_term" value="4" id="radio4" class="form-check-input">
+        <input type="checkbox" name="criteria" value="4" id="radio4" class="form-check-input">
         <label class="form-check-label" for="radio4">
             Genre
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="checkbox" name="search_term" value="5" id="radio5" class="form-check-input">
+        <input type="checkbox" name="criteria" value="5" id="radio5" class="form-check-input">
         <label class="form-check-label" for="radio5">
             ISBN
         </label>
@@ -76,7 +76,7 @@
     <input type="text" name="pages" class="form-control"><br>
 
     <input type="submit" value="Lisää tietue" class="btn btn-primary">
-    
+
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 
 </form>

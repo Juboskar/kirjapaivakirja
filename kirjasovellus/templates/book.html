@@ -6,9 +6,24 @@
     <div class="card-body">
         <h5 class="card-title">Teos: {{ book[1] }}</h5>
         <h5 class="card-title">Tekijä: {{ book[2] }}</h5>
-        <p> genre: {{ book[3] }} </p>
-        <p> isbn: {{ book[4] }} </p>
-        <p> sivuja: {{ book[5] }} </p>
+        <p> Genre: {{ book[3] }} </p>
+        <p> ISBN: {{ book[4] }} </p>
+        <p> Sivuja: {{ book[5] }} </p>
+        
+        {% if info %}
+        <p> Kirja on jo hyllyssä </p>
+        {% else %}
+        <form action="/bookshelf/add" method="POST">
+            <input type="hidden" name="book_id" value="{{ book[0] }}">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+            <input type="submit" value="Lisää omaan hyllyyn" class="btn btn-primary">
+        </form>
+        {% endif %}
+        
+        <br>
+        <form action="#">
+            <input type="submit" value="Lisää arvostelu" class="btn btn-primary">
+        </form>
     </div>
 </div>
 
