@@ -18,7 +18,7 @@
         <li class="nav-item pill-1">
             <a class="nav-link" href="/search">Hae kirjoja</a>
         </li>
-        <li class="nav-item pill-2">
+        <li class="nav-item pill-1">
             <a class="nav-link" href="/logout">Kirjaudu ulos</a> 
         </li>
     </ul>
@@ -52,9 +52,11 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
 <script>
 $(document).ready(function() {
     $('a[href$="' + location.pathname + '"]').addClass('active');
-    if (location.pathname == "/addbook") {$("a[href='/search']").addClass('active');}
+    if (location.pathname == "/search/addbook") {$("a[href='/search']").addClass('active');}
+    if (location.pathname == "/search/findbooks") {$("a[href='/search']").addClass('active');}
 });
 </script>

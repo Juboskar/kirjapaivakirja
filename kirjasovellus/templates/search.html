@@ -1,33 +1,33 @@
 {% extends "layouts/layout.html" %}
 {% block content %}
 <h2>Hae kirjoja</h2>
-<form action="/result" method="GET">
+<form action="/search/findbooks" method="GET">
     <div class="form-check form-check-inline">
-        <input type="radio" name="search_term" value="1" id="radio1" class="form-check-input">
+        <input type="checkbox" name="search_term" value="1" id="radio1" class="form-check-input" checked="checked">
         <label class="form-check-label" for="radio1">
             Kaikki
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="radio" name="search_term" value="2" id="radio2" class="form-check-input">
+        <input type="checkbox" name="search_term" value="2" id="radio2" class="form-check-input">
         <label class="form-check-label" for="radio2">
             Kirjan nimi
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="radio" name="search_term" value="3" id="radio3" class="form-check-input">
+        <input type="checkbox" name="search_term" value="3" id="radio3" class="form-check-input">
         <label class="form-check-label" for="radio3">
             Kirjailija
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="radio" name="search_term" value="4" id="radio4" class="form-check-input">
+        <input type="checkbox" name="search_term" value="4" id="radio4" class="form-check-input">
         <label class="form-check-label" for="radio4">
             Genre
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="radio" name="search_term" value="5" id="radio5" class="form-check-input">
+        <input type="checkbox" name="search_term" value="5" id="radio5" class="form-check-input">
         <label class="form-check-label" for="radio5">
             ISBN
         </label>
@@ -39,13 +39,27 @@
     <input type="submit" value="Hae" class="btn btn-primary">
 </form>
 
+{% for book in books %}
+<br>
+<div class="card bg-custom" style="width: auto;">
+    <div class="card-body">
+      <h5 class="card-title">Teos: {{ book[1] }}</h5>
+      <h5 class="card-title">Tekijä: {{ book[2] }}</h5>
+      <p> genre: {{ book[3] }} </p>
+      <p> isbn: {{ book[4] }} </p>
+      <p> sivuja: {{ book[5] }} </p>
+      <a href="#">Näytä tietue</a>
+    </div>
+  </div>
+{% endfor %}
+
 <br>
 
 <h2>Lisää tietue</h2>
 <p>Varmistathan ennen uuden tietueen lisäämistä, ettei vastaavaa ole vielä lisätty. Tarkista, että tiedot tulevat oikein.</p>
 <h3 class="info">{{ info }}</h3>
 
-<form action="/addbook" method="POST">
+<form action="/search/addbook" method="POST">
     <label for="title">Kirjan nimi:</label>
     <input type="text" name="title" class="form-control"><br>
 
@@ -62,7 +76,11 @@
     <input type="text" name="pages" class="form-control"><br>
 
     <input type="submit" value="Lisää tietue" class="btn btn-primary">
+    
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+
 </form>
+<br>
 
 
 {% endblock %}
