@@ -1,2 +1,3 @@
 CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT, password TEXT);
 CREATE TABLE books (id SERIAL PRIMARY KEY, title TEXT, author TEXT, genre TEXT, isbn TEXT UNIQUE, pages INTEGER);
+CREATE TABLE bookshelf_books (id SERIAL PRIMARY KEY, user_id INTEGER REFERENCES users ON DELETE CASCADE, book_id INTEGER REFERENCES books ON DELETE CASCADE, progress INTEGER, update_date TIMESTAMP);
