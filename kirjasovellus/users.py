@@ -32,4 +32,4 @@ def get_user_id_by_username(username:str):
         user_id = result.fetchone()[0]
         return user_id
     except: 
-        pass # todo
+        pass

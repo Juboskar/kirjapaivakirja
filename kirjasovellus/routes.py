@@ -39,7 +39,7 @@ def login_result():
         session["username"] = username
         session["csrf_token"] = urandom(16).hex()
     else: 
-        login_status = "Sisäänkirjautuminen epäonnistui" # todo: nämä kovakoodaukset html:ään
+        login_status = "Sisäänkirjautuminen epäonnistui" # todo: nämä kovakoodaukset siirrettävä kyl html:ään
         return render_template("index.html", login_status = login_status)
     return redirect("/")
 
@@ -53,7 +53,10 @@ def logout():
 
 @app.route("/bookshelf")
 def go_to_bookshelf():
-    return render_template("bookshelf.html")
+    username = session["username"]
+    user_id = users.get_user_id_by_username(username)
+    shelved_books = bookshelf.find_all_books(user_id)
+    return render_template("bookshelf.html", books = shelved_books)
 
 @app.route("/bookshelf/add", methods=["POST"])
 def add_to_bookshelf():
