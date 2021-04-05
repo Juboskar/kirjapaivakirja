@@ -11,7 +11,7 @@
         <p> Sivuja: {{ book[5] }} </p>
         
         {% if info %}
-        <p> Kirja on jo hyllyssä </p>
+        <p> Kirja lisätty omaan hyllyyn</p>
         {% else %}
         <form action="/bookshelf/add" method="POST">
             <input type="hidden" name="book_id" value="{{ book[0] }}">

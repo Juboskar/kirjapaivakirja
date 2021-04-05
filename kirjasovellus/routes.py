@@ -65,8 +65,28 @@ def add_to_bookshelf():
     book_id = request.form["book_id"]
     username = session["username"]
     user_id = users.get_user_id_by_username(username)
-    print(bookshelf.add_new_book(user_id, book_id))
+    print(bookshelf.add_new_book_event(user_id, book_id, 0))
     return redirect("/search/findbooks/" + book_id)
+
+@app.route("/bookshelf/progress/<int:id>")
+def book_progress(id):
+    username = session["username"]
+    user_id = users.get_user_id_by_username(username)
+    book = books.find_book_by_id(id)
+    events = bookshelf.find_book_events(user_id, id)
+    latest = events[0]
+    return render_template("bookshelf_book.html", book = book, events = events, latest=latest)
+
+@app.route("/bookshelf/updateprogress", methods=["POST"])
+def update_progress():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
+    book_id = request.form["book_id"]
+    progress = request.form["progress"]
+    username = session["username"]
+    user_id = users.get_user_id_by_username(username)
+    bookshelf.add_new_book_event(user_id, book_id, progress)
+    return redirect("/bookshelf/progress/" + book_id )
 
 
 # SEARCH

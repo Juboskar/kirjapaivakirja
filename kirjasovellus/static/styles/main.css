@@ -23,7 +23,7 @@ a {
 }
 
 .header {
-    background: lightgreen;
+    background: white;
     font-family: 'Helvetica', 'Arial', sans-serif;
     font-weight: bold;
     padding: 1em 1em;
@@ -81,6 +81,6 @@ a {
 }
 
 .bg-custom {
-    background-color: lightgreen;
+    background-color: white;
     border-color: black;
 }

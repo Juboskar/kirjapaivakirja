@@ -1,0 +1,30 @@
+{% extends "layouts/layout.html" %}
+{% block content %}
+{% if session.username %}
+
+<h2>Viimeisimmät lukupäivitykset kirjalle {{ book[1] }}:</h2>
+<a href="/search/findbooks/{{ book[0] }}">Kirjan tiedot</a>
+<br>
+
+<h3>Lisää eteneminen:</h3>
+<p>Lisää sivu, jolle etenit. Voit myös palata kirjassa taaksepäin.</p>
+<form action="/bookshelf/updateprogress" method="POST">
+    <input type="hidden" name="book_id" value="{{ book[0] }}">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <label for="pages">Olet sivulla:</label>
+    <input type="number" id="pages" name="progress" min="0" max="{{ book[5] }}" step="1" value="{{ latest[3] }}">
+    <input type="submit" value="Päivitä eteneminen" class="btn btn-primary">
+</form>
+
+{% for event in events %} 
+<br>
+<div class="card bg-custom" style="width: auto;">
+    <div class="card-body">
+      <h5 class="card-title">Päivitetty: {{ event[4] }}</h5>
+      <h5 class="card-title">Etenit sivulle: {{ event[3] }}</h5>
+    </div>
+  </div>
+{% endfor %}
+
+{% endif %}
+{% endblock %}

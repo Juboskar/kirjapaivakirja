@@ -57,5 +57,6 @@
 $(document).ready(function() {
     $('a[href$="' + location.pathname + '"]').addClass('active');
     if (location.pathname.includes("/search/")) {$("a[href='/search']").addClass('active');}
+    if (location.pathname.includes("/bookshelf/")) {$("a[href='/bookshelf']").addClass('active');}
 });
 </script>
