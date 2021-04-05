@@ -33,10 +33,10 @@ def find_books(query:str, selection:int):
             result = db.session.execute(sql, {"query":"%"+query+"%"})
             books.extend(result.fetchall())
         
+        unique_list = []
         for x in books:
-        if x not in unique_list:
-            unique_list.append(x)
-
+            if x not in unique_list:
+                unique_list.append(x)
         return unique_list
 
     except exc.SQLAlchemyError:
