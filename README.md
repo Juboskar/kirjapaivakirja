@@ -2,6 +2,12 @@
 
 Linkki sovellukseen Herokussa: https://kirjapaivakirja.herokuapp.com
 
+Sovelluksessa voi tällä hetkellä:
+- rekisteröityä ja kirjautua 
+- lisätä kirjatietueita hakemistoon
+- hakea kirjoja omaan hyllyyn
+- päivittää etenemistään kirjoissa
+
 ## Sovelluksen tarkoitus
 Kirjasovellus on sovellus, jossa voi pitää kirjaa lukemistaan kirjoista. 
 
