@@ -10,34 +10,19 @@ def add_new_book(title: str, author: str, genre: str, isbn:str, pages:int):
     except exc.SQLAlchemyError:
         return False
 
-def find_books(query:str, selection:int):
-    try:
-        books = []
-        if "2" in selection or "1" in selection: 
-            sql = "SELECT * FROM books WHERE title ILIKE :query"
-            result = db.session.execute(sql, {"query":"%"+query+"%"})
-            books.extend(result.fetchall())
-
-        if "3" in selection or "1" in selection:  
-            sql = "SELECT * FROM books WHERE author ILIKE :query"
-            result = db.session.execute(sql, {"query":"%"+query+"%"})
-            books.extend(result.fetchall())
-
-        if "4" in selection or "1" in selection:  
-            sql = "SELECT * FROM books WHERE genre ILIKE :query"
-            result = db.session.execute(sql, {"query":"%"+query+"%"})
-            books.extend(result.fetchall())
-
-        if "5" in selection or "1" in selection:  
-            sql = "SELECT * FROM books WHERE isbn ILIKE :query"
-            result = db.session.execute(sql, {"query":"%"+query+"%"})
-            books.extend(result.fetchall())
-        
-        unique_list = []
-        for x in books:
-            if x not in unique_list:
-                unique_list.append(x)
-        return unique_list
+def find_books(query:str, selection: list):
+    title = "1" in selection or "2" in selection
+    author = "1" in selection or "3" in selection
+    genre = "1" in selection or "4" in selection
+    isbn = "1" in selection or "5" in selection
+    try: 
+        sql = "SELECT * FROM books WHERE (title ILIKE :query AND :title)\
+        OR (author ILIKE :query AND :author)\
+        OR (genre ILIKE :query AND :genre)\
+        OR (isbn ILIKE :query AND :isbn)"
+        result = db.session.execute(sql, {"query":"%"+query+"%", "title": title, "author": author, "genre":genre, "isbn":isbn })
+        books = result.fetchall()
+        return books
 
     except exc.SQLAlchemyError:
         return []

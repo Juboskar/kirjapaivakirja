@@ -65,7 +65,6 @@ def add_to_bookshelf():
     book_id = request.form["book_id"]
     username = session["username"]
     user_id = users.get_user_id_by_username(username)
-    print(bookshelf.add_new_book_event(user_id, book_id, 0))
     return redirect("/search/findbooks/" + book_id)
 
 @app.route("/bookshelf/progress/<int:id>")
