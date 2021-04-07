@@ -17,9 +17,9 @@ def find_books(query:str, selection: list):
     isbn = "1" in selection or "5" in selection
     try: 
         sql = "SELECT * FROM books WHERE (title ILIKE :query AND :title)\
-        OR (author ILIKE :query AND :author)\
-        OR (genre ILIKE :query AND :genre)\
-        OR (isbn ILIKE :query AND :isbn)"
+            OR (author ILIKE :query AND :author)\
+            OR (genre ILIKE :query AND :genre)\
+            OR (isbn ILIKE :query AND :isbn)"
         result = db.session.execute(sql, {"query":"%"+query+"%", "title": title, "author": author, "genre":genre, "isbn":isbn })
         books = result.fetchall()
         return books
