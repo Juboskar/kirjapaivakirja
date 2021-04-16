@@ -26,9 +26,8 @@ def find_books(query:str, selection: list):
 
     except exc.SQLAlchemyError:
         return []
-
     
-def find_book_by_id(id : int):
+def find_book_by_id(id: int):
     try:
         sql = "SELECT * FROM books WHERE id=:id"
         result = db.session.execute(sql, {"id":id})
