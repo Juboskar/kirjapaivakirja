@@ -7,6 +7,7 @@
     <div class="header">
         <h1>Kirjapäiväkirja</h1>
     </div>
+    <div style="margin-left: 15px; margin-right: 15px;">
     {% if session.username %}
     <ul class="nav nav-tabs nav-fill">
         <li class="nav-item pill-1">
@@ -19,7 +20,7 @@
             <a class="nav-link" href="/search">Hae kirjoja</a>
         </li>
         <li class="nav-item pill-1">
-            <a class="nav-link" href="/logout">Kirjaudu ulos</a> 
+            <a class="nav-link" href="/logout">Kirjaudu ulos</a>
         </li>
     </ul>
     {% block content %}{% endblock %}
@@ -48,15 +49,17 @@
     <br>
     {{ login_status }}
     {% endif %}
-
+    </div>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
 
 <script>
-$(document).ready(function() {
-    $('a[href$="' + location.pathname + '"]').addClass('active');
-    if (location.pathname.includes("/search/")) {$("a[href='/search']").addClass('active');}
-    if (location.pathname.includes("/bookshelf/")) {$("a[href='/bookshelf']").addClass('active');}
-});
+    $(document).ready(function () {
+        $('a[href$="' + location.pathname + '"]').addClass('active');
+        if (location.pathname.includes("/search/")) { $("a[href='/search']").addClass('active'); }
+        if (location.pathname.includes("/bookshelf/")) { $("a[href='/bookshelf']").addClass('active'); }
+    });
 </script>
