@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import Flask
 from os import getenv
-from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = getenv("SECRET_KEY")
