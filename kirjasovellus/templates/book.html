@@ -9,7 +9,7 @@
         <p> Genre: {{ book[3] }} </p>
         <p> ISBN: {{ book[4] }} </p>
         <p> Sivuja: {{ book[5] }} </p>
-        
+
         {% if info %}
         <p> Kirja lisätty omaan hyllyyn</p>
         {% else %}
@@ -19,13 +19,80 @@
             <input type="submit" value="Lisää omaan hyllyyn" class="btn btn-primary">
         </form>
         {% endif %}
-        
-        <br>
-        <form action="#">
-            <input type="submit" value="Lisää arvostelu" class="btn btn-primary">
-        </form>
+        <hr class="dashed">
+        <button id="visibilityButton" class="btn btn-primary" style="display: block" onclick="setVisible()">Lisää
+            arvostelu
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
+            </svg>
+        </button>
+        <div id="reviewForm" style="display: none">
+            <form action="#">
+                Kirjoita arvostelu:
+                <input type="text" class="form-control"><br>
+                Lisää tähtiarvostelu:
+                <br>
+                <div class="rating">
+                    <label>
+                        <input type="radio" name="stars" value="1" />
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="2" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="3" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="4" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="5" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                </div>
+                <br>
+                <input type="submit" value="Lisää arvostelu" class="btn btn-primary">
+            </form>
+            <br>
+            <button class="btn btn-primary" onclick="hideForm()">Piilota arvostelulomake
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                </svg>
+            </button>
+        </div>
     </div>
 </div>
+<br>
+
+<script>
+    function setVisible() {
+        document.getElementById("reviewForm").style.display = "block";
+        document.getElementById("visibilityButton").style.display = "none";
+    }
+
+    function hideForm() {
+        document.getElementById("reviewForm").style.display = "none";
+        document.getElementById("visibilityButton").style.display = "block";
+    }
+</script>
 
 {% endif %}
 {% endblock %}
