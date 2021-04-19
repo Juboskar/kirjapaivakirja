@@ -3,31 +3,31 @@
 <h2>Hae kirjoja</h2>
 <form action="/search/findbooks" method="GET">
     <div class="form-check form-check-inline">
-        <input type="checkbox" name="criteria" value="1" id="radio1" class="form-check-input" checked="checked">
-        <label class="form-check-label" for="radio1">
-            Kaikki
+        <input type="checkbox" name="criteria" value="1" id="radio1" class="form-check-input" checked="checked" onclick="hideRest()">
+        <label class=" form-check-label" for="radio1">
+        Kaikki
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="checkbox" name="criteria" value="2" id="radio2" class="form-check-input">
+        <input type="checkbox" name="criteria" value="2" id="radio2" class="form-check-input" onclick="hideFirst()">
         <label class="form-check-label" for="radio2">
             Kirjan nimi
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="checkbox" name="criteria" value="3" id="radio3" class="form-check-input">
+        <input type="checkbox" name="criteria" value="3" id="radio3" class="form-check-input" onclick="hideFirst()">
         <label class="form-check-label" for="radio3">
             Kirjailija
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="checkbox" name="criteria" value="4" id="radio4" class="form-check-input">
+        <input type="checkbox" name="criteria" value="4" id="radio4" class="form-check-input" onclick="hideFirst()">
         <label class="form-check-label" for="radio4">
             Genre
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input type="checkbox" name="criteria" value="5" id="radio5" class="form-check-input">
+        <input type="checkbox" name="criteria" value="5" id="radio5" class="form-check-input" onclick="hideFirst()">
         <label class="form-check-label" for="radio5">
             ISBN
         </label>
@@ -43,20 +43,21 @@
 <br>
 <div class="card bg-custom shadow" style="width: auto;">
     <div class="card-body">
-      <h5 class="card-title">Teos: {{ book[1] }}</h5>
-      <h5 class="card-title">Tekijä: {{ book[2] }}</h5>
-      <p> genre: {{ book[3] }} </p>
-      <p> isbn: {{ book[4] }} </p>
-      <p> sivuja: {{ book[5] }} </p>
-      <a href="/search/findbooks/{{ book[0] }}">Näytä tietue</a>
+        <h5 class="card-title">Teos: {{ book[1] }}</h5>
+        <h5 class="card-title">Tekijä: {{ book[2] }}</h5>
+        <p> genre: {{ book[3] }} </p>
+        <p> isbn: {{ book[4] }} </p>
+        <p> sivuja: {{ book[5] }} </p>
+        <a href="/search/findbooks/{{ book[0] }}">Näytä tietue</a>
     </div>
-  </div>
+</div>
 {% endfor %}
 
 <br>
 
 <h2>Lisää tietue</h2>
-<p>Varmistathan ennen uuden tietueen lisäämistä, ettei vastaavaa ole vielä lisätty. Tarkista, että tiedot tulevat oikein.</p>
+<p>Varmistathan ennen uuden tietueen lisäämistä, ettei vastaavaa ole vielä lisätty. Tarkista, että tiedot tulevat
+    oikein.</p>
 <h3 class="info">{{ info }}</h3>
 
 <form action="/search/addbook" method="POST">
@@ -71,7 +72,7 @@
 
     <label for="isbn">ISBN:</label>
     <input type="text" name="isbn" class="form-control"><br>
-    
+
     <label for="pages">Sivumäärä:</label>
     <input type="text" name="pages" class="form-control"><br>
 
@@ -81,6 +82,17 @@
 
 </form>
 <br>
+<script>
+    function hideFirst() {
+        document.getElementById("radio1").checked = false;
+    }
 
+    function hideRest() {
+        document.getElementById("radio2").checked = false;
+        document.getElementById("radio3").checked = false;
+        document.getElementById("radio4").checked = false;
+        document.getElementById("radio5").checked = false;
+    }
+</script>
 
 {% endblock %}

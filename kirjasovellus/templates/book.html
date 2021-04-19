@@ -29,54 +29,57 @@
             </svg>
         </button>
         <div id="reviewForm" style="display: none">
-            <form action="#">
-                Kirjoita arvostelu:
-                <input type="text" class="form-control"><br>
-                Lisää tähtiarvostelu:
+            <h4>Lisää arvostelu tai muokkaa aiempaa arvosteluasi: </h2>
+                <p> Aiemmin arvosteltu: {{review[3]}} </p>
+                <form action="/search/findbooks/{{ book[0] }}/addreview" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                    Sanallinen arvostelu:
+                    <input type="text" class="form-control" name="review" value=" {{ review[2] }}"><br>
+                    Tähtiarvostelu:
+                    <br>
+                    <div class="rating">
+                        <label>
+                            <input type="radio" name="stars" value="1" id="btn1" />
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" value="2" id="btn2" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" value="3" id="btn3" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" value="4" id="btn4" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" value="5" id="btn5" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                    </div>
+                    <br>
+                    <input type="submit" value="Lisää arvostelu" class="btn btn-primary">
+                </form>
                 <br>
-                <div class="rating">
-                    <label>
-                        <input type="radio" name="stars" value="1" />
-                        <span class="icon">★</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="stars" value="2" />
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="stars" value="3" />
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="stars" value="4" />
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="stars" value="5" />
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                    </label>
-                </div>
-                <br>
-                <input type="submit" value="Lisää arvostelu" class="btn btn-primary">
-            </form>
-            <br>
-            <button class="btn btn-primary" onclick="hideForm()">Piilota arvostelulomake
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-arrow-up" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-                </svg>
-            </button>
+                <button class="btn btn-primary" onclick="hideForm()">Piilota arvostelulomake
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                    </svg>
+                </button>
         </div>
     </div>
 </div>
@@ -86,6 +89,7 @@
     function setVisible() {
         document.getElementById("reviewForm").style.display = "block";
         document.getElementById("visibilityButton").style.display = "none";
+        document.getElementById("btn{{ review[1] }}").checked = true;
     }
 
     function hideForm() {

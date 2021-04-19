@@ -122,4 +122,20 @@ def find_books_id(id):
     username = session["username"]
     user_id = users.get_user_id_by_username(username)
     info = bookshelf.check_if_in_bookshelf(user_id, id)
-    return render_template("book.html", book = book, info = info)
+    review = books.check_if_already_rated(user_id, id)
+    if review == None:
+        review = (-1, 0, '', "et ole arvostellut tätä kirjaa aiemmin")
+    return render_template("book.html", book = book, review = review, info = info)
+
+@app.route("/search/findbooks/<int:id>/addreview", methods=["POST"])
+def add_review(id):
+    if session["csrf_token"] != request.form["csrf_token"]: 
+        abort(403)
+    book_id = id
+    username = session["username"]
+    user_id = users.get_user_id_by_username(username)
+    review = request.form["review"]
+    star_rating = request.form["stars"]
+    already_exists = books.check_if_already_rated(user_id, id) != None
+    books.add_review(user_id, book_id, star_rating, review, already_exists)
+    return redirect("/search/findbooks/" + str(id))
