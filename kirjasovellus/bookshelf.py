@@ -43,8 +43,6 @@ def find_all_books(user_id: int):
         return None
 
 def find_book_events(user_id: int, book_id: int):
-    print(user_id)
-    print(book_id)
     try:   
         sql = "SELECT * FROM bookshelf_books WHERE user_id=:user_id AND book_id=:book_id ORDER BY update_date DESC"
         result = db.session.execute(sql, {"user_id":user_id, "book_id":book_id})

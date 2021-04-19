@@ -130,7 +130,7 @@ def find_books_id(id):
     info = bookshelf.check_if_in_bookshelf(user_id, id)
     review = books.check_if_already_rated(user_id, id)
     if review == None:
-        review = (-1, 0, '', "et ole arvostellut tätä kirjaa aiemmin")
+        review = (0,0,"",0)
     return render_template("book.html", book = book, review = review, info = info)
 
 @app.route("/search/findbooks/<int:id>/addreview", methods=["POST"])

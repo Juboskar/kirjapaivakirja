@@ -30,7 +30,7 @@
         </button>
         <div id="reviewForm" style="display: none">
             <h4>Lisää arvostelu tai muokkaa aiempaa arvosteluasi: </h2>
-                <p> Aiemmin arvosteltu: {{review[3]}} </p>
+                <p> Aiemmin arvosteltu: {{ review[3].strftime('%d.%m.%Y klo %H:%M') if review[3] != 0 else "ei aiempaa arvostelua" }} </p>
                 <form action="/search/findbooks/{{ book[0] }}/addreview" method="POST">
                     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
                     Sanallinen arvostelu:
