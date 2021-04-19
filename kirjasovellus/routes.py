@@ -65,6 +65,7 @@ def add_to_bookshelf():
     book_id = request.form["book_id"]
     username = session["username"]
     user_id = users.get_user_id_by_username(username)
+    bookshelf.add_new_book_event(user_id, book_id, 0)
     return redirect("/search/findbooks/" + book_id)
 
 @app.route("/bookshelf/progress/<int:id>")
@@ -96,7 +97,7 @@ def search():
 
 @app.route("/search/addbook", methods=["POST"])
 def add_book():
-    if session["csrf_token"] != request.form["csrf_token"]:
+    if session["csrf_token"] != request.form["csrf_token"]: 
         abort(403)
     title = request.form["title"]
     author = request.form["author"]
