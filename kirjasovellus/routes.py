@@ -5,6 +5,11 @@ import users
 import books
 import bookshelf
 
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=15)
+
 # LOGIN 
 
 @app.route("/")
