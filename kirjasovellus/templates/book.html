@@ -3,8 +3,8 @@
 {% if session.username %}
 <br>
 
-<h3>Teos: {{ book[1] }}</h5>
-<h3>Tekijä: {{ book[2] }}</h5>
+<h3>Teos: {{ book[1] }}</h3>
+<h3>Tekijä: {{ book[2] }}</h3>
 <p> Genre: {{ book[3] }} </p>
 <p> ISBN: {{ book[4] }} </p>
 <p> Sivuja: {{ book[5] }} </p>
@@ -31,7 +31,8 @@
     <div class="card bg-custom shadow" style="width: auto;">
         <div class="card-body">
             <h4>Lisää arvostelu tai muokkaa aiempaa arvosteluasi: </h2>
-                <p> Aiemmin arvosteltu: {{ review[3].strftime('%d.%m.%Y klo %H:%M') if review[3] != 0 else "ei aiempaa
+                <p> Aiemmin arvosteltu: {{ review[3].strftime('%d.%m.%Y klo %H:%M') if review[3] != 0 else "ei
+                    aiempaa
                     arvostelua" }} </p>
                 <form action="/search/findbooks/{{ book[0] }}/addreview" method="POST">
                     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
@@ -94,8 +95,10 @@
 <div class="card bg-custom shadow" style="width: auto;">
     <div class="card-body">
         <h5 class="card-title">Arvostelija: {{ rating[0] }}</h5>
-        <h5 class="card-title">Tähtiä: <span style="color: orange;">{{ rating[1] * "★" }}</span><span
-                style="color: grey;">{{ (5 - rating[1]) * "★" }}</span></h5>
+        <h5 class="card-title">Tähtiä:
+            <span style="color: orange;">{{ rating[1] * "★" }}</span>
+            <span style="color: grey;">{{ (5 - rating[1]) * "★" }}</span>
+        </h5>
         <h5 class="card-title">Arvostelu: {{ rating[2] }}</h5>
         <h5 class="card-title">Päivämäärä: {{ rating[3].strftime('%d.%m.%Y klo %H:%M') }}</h5>
     </div>
