@@ -96,8 +96,7 @@
     <div class="card-body">
         <h5 class="card-title">Arvostelija: {{ rating[0] }}</h5>
         <h5 class="card-title">Tähtiä:
-            <span style="color: orange;">{{ rating[1] * "★" }}</span>
-            <span style="color: grey;">{{ (5 - rating[1]) * "★" }}</span>
+            <span style="color: orange;">{{ rating[1] * "★" }}</span><span style="color: grey;">{{ (5 - rating[1]) * "★" }}</span>
         </h5>
         <h5 class="card-title">Arvostelu: {{ rating[2] }}</h5>
         <h5 class="card-title">Päivämäärä: {{ rating[3].strftime('%d.%m.%Y klo %H:%M') }}</h5>
