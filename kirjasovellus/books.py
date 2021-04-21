@@ -75,3 +75,14 @@ def add_review(user_id: int, book_id: int, star_rating: int, review: str, alread
             return True
         except exc.SQLAlchemyError:
             return False
+
+def find_reviews_by_book_id(book_id: int):
+    try:   
+        sql = "SELECT u.username, r.star_rating, r.review, r.rating_date FROM ratings r \
+            JOIN users u ON u.id = r.user_id  \
+            WHERE book_id=:book_id ORDER BY rating_date DESC"
+        result = db.session.execute(sql, {"book_id": book_id})
+        reviews = result.fetchall()
+        return reviews
+    except exc.SQLAlchemyError:
+        return None

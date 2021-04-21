@@ -45,7 +45,7 @@ def login_result():
         session["username"] = username
         session["csrf_token"] = urandom(16).hex()
     else: 
-        login_status = "Sisäänkirjautuminen epäonnistui" # todo: nämä kovakoodaukset siirrettävä kyl html:ään
+        login_status = "Virheellinen käyttäjätunnus tai salasana" # todo: nämä kovakoodaukset siirrettävä kyl html:ään
         return render_template("index.html", login_status = login_status)
     return redirect("/")
 
@@ -131,7 +131,10 @@ def find_books_id(id):
     review = books.check_if_already_rated(user_id, id)
     if review == None:
         review = (0,0,"",0)
-    return render_template("book.html", book = book, review = review, info = info)
+
+    ratings = books.find_reviews_by_book_id(id)
+
+    return render_template("book.html", book = book, review = review, info = info, ratings = ratings)
 
 @app.route("/search/findbooks/<int:id>/addreview", methods=["POST"])
 def add_review(id):

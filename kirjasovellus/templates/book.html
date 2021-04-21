@@ -2,35 +2,37 @@
 {% block content %}
 {% if session.username %}
 <br>
-<div class="card bg-custom shadow" style="width: auto;">
-    <div class="card-body">
-        <h5 class="card-title">Teos: {{ book[1] }}</h5>
-        <h5 class="card-title">Tekijä: {{ book[2] }}</h5>
-        <p> Genre: {{ book[3] }} </p>
-        <p> ISBN: {{ book[4] }} </p>
-        <p> Sivuja: {{ book[5] }} </p>
 
-        {% if info %}
-        <p> Kirja lisätty omaan hyllyyn</p>
-        {% else %}
-        <form action="/bookshelf/add" method="POST">
-            <input type="hidden" name="book_id" value="{{ book[0] }}">
-            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-            <input type="submit" value="Lisää omaan hyllyyn" class="btn btn-primary">
-        </form>
-        {% endif %}
-        <hr class="dashed">
-        <button id="visibilityButton" class="btn btn-primary" style="display: block" onclick="setVisible()">Lisää
-            arvostelu
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down"
-                viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
-            </svg>
-        </button>
-        <div id="reviewForm" style="display: none">
+<h3>Teos: {{ book[1] }}</h5>
+<h3>Tekijä: {{ book[2] }}</h5>
+<p> Genre: {{ book[3] }} </p>
+<p> ISBN: {{ book[4] }} </p>
+<p> Sivuja: {{ book[5] }} </p>
+
+{% if info %}
+<p> Kirja lisätty omaan hyllyyn</p>
+{% else %}
+<form action="/bookshelf/add" method="POST">
+    <input type="hidden" name="book_id" value="{{ book[0] }}">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Lisää omaan hyllyyn" class="btn btn-primary">
+</form>
+{% endif %}
+<br>
+<button id="visibilityButton" class="btn btn-primary" style="display: block" onclick="setVisible()">Lisää
+    arvostelu
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
+    </svg>
+</button>
+<div id="reviewForm" style="display: none">
+    <div class="card bg-custom shadow" style="width: auto;">
+        <div class="card-body">
             <h4>Lisää arvostelu tai muokkaa aiempaa arvosteluasi: </h2>
-                <p> Aiemmin arvosteltu: {{ review[3].strftime('%d.%m.%Y klo %H:%M') if review[3] != 0 else "ei aiempaa arvostelua" }} </p>
+                <p> Aiemmin arvosteltu: {{ review[3].strftime('%d.%m.%Y klo %H:%M') if review[3] != 0 else "ei aiempaa
+                    arvostelua" }} </p>
                 <form action="/search/findbooks/{{ book[0] }}/addreview" method="POST">
                     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
                     Sanallinen arvostelu:
@@ -84,6 +86,23 @@
     </div>
 </div>
 <br>
+
+<h3>Arvostelut: </h3>
+
+{% for rating in ratings %}
+<br>
+<div class="card bg-custom shadow" style="width: auto;">
+    <div class="card-body">
+        <h5 class="card-title">Arvostelija: {{ rating[0] }}</h5>
+        <h5 class="card-title">Tähtiä: <span style="color: orange;">{{ rating[1] * "★" }}</span><span
+                style="color: grey;">{{ (5 - rating[1]) * "★" }}</span></h5>
+        <h5 class="card-title">Arvostelu: {{ rating[2] }}</h5>
+        <h5 class="card-title">Päivämäärä: {{ rating[3].strftime('%d.%m.%Y klo %H:%M') }}</h5>
+    </div>
+</div>
+{% endfor %}
+<br>
+
 
 <script>
     function setVisible() {
