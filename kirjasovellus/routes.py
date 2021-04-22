@@ -18,8 +18,14 @@ def make_session_permanent():
 
 @app.route("/")
 def index():
-    return render_template("index.html")
-
+    events = []
+    if session.get("username") is not None:
+        username = session["username"]
+        user_id = users.get_user_id_by_username(username)
+        ratings = friends.get_friends_reviews(user_id)
+        progress_updates = friends.get_friends_updates(user_id)
+        events = friends.concatenate_event_lists(ratings, progress_updates)
+    return render_template("index.html", events = events)
 
 @app.route("/register")
 def redirect_to_register():

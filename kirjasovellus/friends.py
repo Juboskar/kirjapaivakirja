@@ -84,3 +84,53 @@ def find_all_friends(user_id: int):
 
     except exc.SQLAlchemyError:
         return None
+
+def get_friends_reviews(user_id: int):
+    try:
+        sql = "SELECT r.user_id, us.username, b.title, r.star_rating, r.review, r.rating_date FROM ratings r \
+            JOIN users us ON us.id=r.user_id\
+            JOIN books b ON b.id=r.book_id\
+            WHERE r.user_id IN\
+            (SELECT u.id FROM friends f\
+            LEFT JOIN users u ON u.id=f.friend_id\
+                WHERE user_id=:user_id) ORDER BY r.rating_date DESC"
+        result = db.session.execute(sql, {"user_id": user_id})
+        friends = result.fetchall()
+        return friends
+
+    except exc.SQLAlchemyError:
+        return []
+
+
+def get_friends_updates(user_id: int):
+    try:
+        sql = "SELECT bb.user_id, us.username, b.title, bb.progress, bb.update_date FROM bookshelf_books bb \
+            JOIN users us ON us.id=bb.user_id\
+            JOIN books b ON b.id=bb.book_id\
+            WHERE bb.user_id IN\
+            (SELECT u.id FROM friends f\
+            LEFT JOIN users u ON u.id=f.friend_id\
+                WHERE user_id=:user_id) ORDER BY bb.update_date DESC"
+        result = db.session.execute(sql, {"user_id": user_id})
+        friends = result.fetchall()
+        return friends
+
+    except exc.SQLAlchemyError:
+        return []
+
+class Event:
+    def __init__(self, event_type: str, time, content: tuple):
+        self.type = event_type
+        self.time = time
+        self.content = content
+
+def concatenate_event_lists(ratings: tuple, progress_updates: tuple):
+    events = []
+    for i in ratings:
+        events.append(Event("rating", i[5], i))
+    for i in progress_updates:
+        events.append(Event("progress", i[4], i))
+        def order(e: Event):
+            return e.time
+    events.sort(key=order, reverse=True)
+    return events[:10]

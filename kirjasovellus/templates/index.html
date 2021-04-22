@@ -1,4 +1,28 @@
 {% extends "layouts/layout.html" %}
 {% block content %}
-<p>Tervetuloa Kirjapäiväkirjaan</p>
+<h3>Kavereidesi toimintaa:</h3>
+
+{% for event in events %}
+<br>
+{% if event.type == 'rating' %}
+<div class="card bg-custom shadow" style="width: auto;">
+    <div class="card-body">
+        <h5 class="card-title"><span style="font-weight: bold;">{{ event.content[1] }}</span> arvosteli kirjan <span style="font-weight: bold;">{{event.content[2]}}</span></h5>
+        <h5 class="card-title">Tähtiä:
+            <span style="color: orange;">{{ event.content[3] * "★" }}</span><span style="color: grey;">{{ (5 - event.content[3]) * "★" }}</span>
+        </h5>
+        <h5 class="card-title">Arvostelu: {{ event.content[4] }}</h5>
+        <h5 class="card-title">{{ event.content[5].strftime('%d.%m.%Y klo %H:%M') }}</h5>
+    </div>
+</div>
+{% else%}
+<div class="card bg-custom shadow" style="width: auto;">
+    <div class="card-body">
+        <h5 class="card-title"><span style="font-weight: bold;">{{ event.content[1] }}</span> eteni kirjassa <span style="font-weight: bold;">{{event.content[2]}}</span> sivulle {{ event.content[3] }}</h5>
+        <h5 class="card-title">{{ event.content[4].strftime('%d.%m.%Y klo %H:%M') }}</h5>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+<br>
 {% endblock %}
