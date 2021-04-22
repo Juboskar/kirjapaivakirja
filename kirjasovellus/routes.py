@@ -148,3 +148,10 @@ def add_review(id):
     already_exists = books.check_if_already_rated(user_id, id) != None
     books.add_review(user_id, book_id, star_rating, review, already_exists)
     return redirect("/search/findbooks/" + str(id))
+
+
+# FRIENDS
+
+@app.route("/friends")
+def friends():
+    return render_template("friends.html")

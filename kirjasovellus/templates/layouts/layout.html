@@ -15,6 +15,9 @@
             <a class="nav-link" href="/">Etusivu</a>
         </li>
         <li class="nav-item pill-1">
+            <a class="nav-link" href="/friends">Kaverit</a>
+        </li>
+        <li class="nav-item pill-1">
             <a class="nav-link" href="/bookshelf">Kirjahylly</a>
         </li>
         <li class="nav-item pill-1">
@@ -61,6 +64,7 @@
     $(document).ready(function () {
         $('a[href$="' + location.pathname + '"]').addClass('active');
         if (location.pathname.includes("/search/")) { $("a[href='/search']").addClass('active'); }
+        if (location.pathname.includes("/friends/")) { $("a[href='/friends']").addClass('active'); }
         if (location.pathname.includes("/bookshelf/")) { $("a[href='/bookshelf']").addClass('active'); }
     });
 </script>
