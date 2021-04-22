@@ -6,6 +6,7 @@ import users
 import books
 import bookshelf
 import friends
+import events
 
 
 @app.before_request
@@ -18,14 +19,14 @@ def make_session_permanent():
 
 @app.route("/")
 def index():
-    events = []
+    friend_events = []
     if session.get("username") is not None:
         username = session["username"]
         user_id = users.get_user_id_by_username(username)
         ratings = friends.get_friends_reviews(user_id)
         progress_updates = friends.get_friends_updates(user_id)
-        events = friends.concatenate_event_lists(ratings, progress_updates)
-    return render_template("index.html", events = events)
+        friend_events = events.concatenate_event_lists(ratings, progress_updates)
+    return render_template("index.html", events = friend_events)
 
 @app.route("/register")
 def redirect_to_register():
