@@ -72,3 +72,15 @@ def check_if_already_friends(user_id: int, connection_id: int):
 
     except exc.SQLAlchemyError:
         return None
+    
+def find_all_friends(user_id: int):
+    try:
+        sql = "SELECT u.id, u.username, f.friend_status FROM friends f\
+            LEFT JOIN users u ON u.id=f.friend_id\
+                WHERE user_id=:user_id"
+        result = db.session.execute(sql, {"user_id": user_id})
+        friends = result.fetchall()
+        return friends
+
+    except exc.SQLAlchemyError:
+        return None

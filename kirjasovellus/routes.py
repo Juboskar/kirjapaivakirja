@@ -168,10 +168,21 @@ def add_review(id):
 
 # FRIENDS
 
-
 @app.route("/friends")
 def friends_page():
-    return render_template("friends.html")
+    username = session["username"]
+    user_id = users.get_user_id_by_username(username)
+    ok = []
+    sent = []
+    waiting = []
+    for i in friends.find_all_friends(user_id):
+        if i[2] == 'ok':
+            ok.append(i)
+        if i[2] == 'sent':
+            sent.append(i)
+        if i[2] == 'waiting':
+            waiting.append(i)
+    return render_template("friends.html", ok = ok, sent = sent, waiting = waiting)
 
 
 @app.route("/friends/findfriends")
