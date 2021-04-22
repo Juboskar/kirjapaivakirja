@@ -4,20 +4,44 @@
 
 <h3>käyttäjä: {{ user[2] }}</h3>
 
+{% if (user[0] == 'you') %}
+<p>Oma sivusi</p>
+{% endif %}
+
 {% if (user[0] == 'ok') %}
 <p>Olette kavereita</p>
+<form action="/friends/findfriends/removefriend/{{ user[1] }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Poista kavereista" class="btn btn-primary">
+</form>
 {% endif %}
 
 {% if (user[0] == 'sent') %}
 <p>Kaveripyyntö lähetetty</p>
+<form action="/friends/findfriends/removefriend/{{ user[1] }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Peruuta" class="btn btn-primary">
+</form>
 {% endif %}
 
 {% if (user[0] == 'waiting') %}
 <p>Käyttäjä on lähettänyt sinulle hyväksyntää odottavan kaveripyynnön</p>
+<form action="/friends/findfriends/acceptfriend/{{ user[1] }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Hyväksy" class="btn btn-primary">
+</form>
+<br>
+<form action="/friends/findfriends/removefriend/{{ user[1] }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Hylkää" class="btn btn-primary">
+</form>
 {% endif %}
 
 {% if (user[0] == None) %}
-<p>Lisää kaveriksi</p>
+<form action="/friends/findfriends/sendrequest/{{ user[1] }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Lisää kaveriksi" class="btn btn-primary">
+</form>
 
 {% endif %}
 <br>

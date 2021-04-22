@@ -24,6 +24,8 @@ def find_connection(user_id: int, connection_id: int):
         return []
 
 def send_friend_request(user_id: int, connection_id: int):
+    if user_id == connection_id:
+        return False
     try:
         sql = "INSERT INTO friends (user_id, friend_id, friend_status) VALUES (:user_id, :connection_id, 'sent')"
         db.session.execute(sql, {"user_id": user_id, "connection_id": connection_id})
@@ -31,6 +33,7 @@ def send_friend_request(user_id: int, connection_id: int):
         db.session.execute(sql, {"user_id": user_id, "connection_id": connection_id})
         db.session.commit()
         return True
+
     except exc.SQLAlchemyError:
         return False
 
@@ -44,6 +47,28 @@ def accept_friend_request(user_id: int, connection_id: int):
         db.session.execute(sql, {"user_id": user_id, "connection_id": connection_id})
         db.session.commit()
         return True
+
+    except exc.SQLAlchemyError:
+        return False
+    
+def remove_friend(user_id: int, connection_id: int):
+    try:
+        sql = "DELETE FROM friends \
+            WHERE (user_id=:user_id AND friend_id=:connection_id) \
+            OR (user_id=:connection_id AND friend_id=:user_id)"
+        db.session.execute(sql, {"user_id": user_id, "connection_id": connection_id})
+        db.session.commit()
+        return True
+
     except exc.SQLAlchemyError:
         return False
 
+def check_if_already_friends(user_id: int, connection_id: int):
+    try:
+        sql = "SELECT * FROM friends WHERE user_id=:user_id AND friend_id=:connection_id"
+        result = db.session.execute(sql, {"user_id": user_id, "connection_id": connection_id})
+        user = result.fetchone()
+        return user
+
+    except exc.SQLAlchemyError:
+        return None
