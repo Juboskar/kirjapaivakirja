@@ -1,0 +1,26 @@
+{% extends "layouts/layout.html" %}
+{% block content %}
+{% if session.username %}
+
+<h3>käyttäjä: {{ user[2] }}</h3>
+
+{% if (user[0] == 'ok') %}
+<p>Olette kavereita</p>
+{% endif %}
+
+{% if (user[0] == 'sent') %}
+<p>Kaveripyyntö lähetetty</p>
+{% endif %}
+
+{% if (user[0] == 'waiting') %}
+<p>Käyttäjä on lähettänyt sinulle hyväksyntää odottavan kaveripyynnön</p>
+{% endif %}
+
+{% if (user[0] == None) %}
+<p>Lisää kaveriksi</p>
+
+{% endif %}
+<br>
+
+{% endif %}
+{% endblock %}

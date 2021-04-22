@@ -1,4 +1,23 @@
 {% extends "layouts/layout.html" %}
 {% block content %}
 <p>Kaveritoiminto tulossa</p>
+
+<h2>Hae kavereita</h2>
+<form action="/friends/findfriends" method="GET">
+    <label for="query">Nimi: </label>
+    <input type="text" name="name" class="form-control">
+    <br>
+    <input type="submit" value="Hae" class="btn btn-primary">
+</form>
+
+{% for user in users %}
+<br>
+<div class="card bg-custom shadow" style="width: auto;">
+    <div class="card-body">
+        <h5 class="card-title">{{ user[1] }}</h5>
+        <a href="/friends/findfriends/{{ user[0] }}">Näytä käyttäjä</a>
+    </div>
+</div>
+{% endfor %}
+
 {% endblock %}

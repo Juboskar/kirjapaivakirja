@@ -5,6 +5,7 @@ from datetime import timedelta
 import users
 import books
 import bookshelf
+import friends
 
 @app.before_request
 def make_session_permanent():
@@ -149,9 +150,21 @@ def add_review(id):
     books.add_review(user_id, book_id, star_rating, review, already_exists)
     return redirect("/search/findbooks/" + str(id))
 
-
 # FRIENDS
 
 @app.route("/friends")
-def friends():
+def friends_page():
     return render_template("friends.html")
+
+@app.route("/friends/findfriends")
+def findfriends():
+    username = request.args["name"]
+    result = friends.find_user(username)
+    return render_template("friends.html", users = result)
+
+@app.route("/friends/findfriends/<int:id>")
+def findfriendsbyid(id):
+    username = session["username"]
+    user_id = users.get_user_id_by_username(username)
+    result = friends.find_connection(user_id, id)
+    return render_template("user.html", user = result)
