@@ -13,4 +13,4 @@ def concatenate_event_lists(ratings: tuple, progress_updates: tuple):
     def order(e: Event):
         return e.time
     events.sort(key=order, reverse=True)
-    return events[:10]
+    return events[:30]

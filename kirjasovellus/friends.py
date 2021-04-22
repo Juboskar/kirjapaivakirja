@@ -93,7 +93,7 @@ def get_friends_reviews(user_id: int):
             WHERE r.user_id IN\
             (SELECT u.id FROM friends f\
             LEFT JOIN users u ON u.id=f.friend_id\
-                WHERE user_id=:user_id) ORDER BY r.rating_date DESC"
+                WHERE user_id=:user_id AND f.friend_status='ok') ORDER BY r.rating_date DESC"
         result = db.session.execute(sql, {"user_id": user_id})
         friends = result.fetchall()
         return friends
@@ -110,7 +110,7 @@ def get_friends_updates(user_id: int):
             WHERE bb.user_id IN\
             (SELECT u.id FROM friends f\
             LEFT JOIN users u ON u.id=f.friend_id\
-                WHERE user_id=:user_id) ORDER BY bb.update_date DESC"
+                WHERE user_id=:user_id AND f.friend_status='ok') ORDER BY bb.update_date DESC"
         result = db.session.execute(sql, {"user_id": user_id})
         friends = result.fetchall()
         return friends
