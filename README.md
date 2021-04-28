@@ -10,7 +10,7 @@ Sovelluksen toiminnot:
   - tutkia yksittäisiä kirjoja ja lisätä arvosteluja niille
 - bookshelf -sivulla voi:
   - päivittää etenemistään kirjoissa
-- lisäksi on pian tulossa kavereiden haku- ja lisäystoiminnallisuus friends-sivulle
+- lisäksi viimeisimpänä on juuri tullut kavereiden haku- ja lisäystoiminnallisuus friends-sivulle
 - etusivulle tulee kavereiden viimeaikaisia lukuetenemisiä ja arvosteluja
 
 ## Sovelluksen tarkoitus
