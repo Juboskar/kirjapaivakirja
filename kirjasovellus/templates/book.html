@@ -37,7 +37,8 @@
                 <form action="/search/findbooks/{{ book[0] }}/addreview" method="POST">
                     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
                     Sanallinen arvostelu:
-                    <input type="text" class="form-control" name="review" value=" {{ review[2] }}"><br>
+                    <textarea type="text" class="form-control" name="review" value=" {{ review[2] }}"></textarea>
+                    <br>
                     Tähtiarvostelu:
                     <br>
                     <div class="rating">
