@@ -4,17 +4,18 @@ Linkki sovellukseen Herokussa: https://kirjapaivakirja.herokuapp.com
 
 Sovelluksen toiminnot:
 - voi rekisteröityä ja kirjautua minkä tahansa polun kautta
-- search -sivulla voi:
+- Haku-sivulla voi:
   - lisätä kirjatietueita yleiseen hakemistoon
   - hakea kirjoja omaan hyllyyn
   - tutkia yksittäisiä kirjoja ja lisätä arvosteluja niille
-- bookshelf -sivulla voi:
-  - päivittää etenemistään kirjoissa
-- lisäksi viimeisimpänä on juuri tullut kavereiden haku- ja lisäystoiminnallisuus friends-sivulle
+- Kirjahylly-sivulla voi:
+  - päivittää ja poistaa etenemistään kirjoissa
+  - poistaa kirjan omasta hyllystään (poistaa myös tehdyt lukupäivitykset)
+- kavereita voi lisätä Kaverit-sivulla
 - etusivulle tulee kavereiden viimeaikaisia lukuetenemisiä ja arvosteluja
 
 ## Sovelluksen tarkoitus
-Kirjasovellus on sovellus, jossa voi pitää kirjaa lukemistaan kirjoista. 
+Kirjasovellus on sosiaalinen media, jossa voi pitää kirjaa lukemistaan kirjoista, arvostella kirjoja ja tutkia muiden arvosteluja ja kavereiden lukuetenemisiä. 
 
 ### Käyttäjät
 Sovelluksen käyttäminen edellyttää sisäänkirjautumista. Sisäänkirjautuakseen voi luoda salasanan ja käyttäjätunnuksen. 
@@ -25,8 +26,8 @@ Kirjatietueita voi hakea tietokannasta ja niitä voi lisätä sinne, ellei käyt
 ### Hylly
 Jokaisella käyttäjällä on oma hyllynäkymä, johon voi lisätä tietokannasta löytyviä kirjoja. Hyllynäkymässä on erikseen luetut kirjat, lukemista odottavat kirjat ja keskeneräiset kirjat. keskeneräisillä kirjoilla näkyy eteneminen kirjassa sivunumerona, jota käyttäjä voi lukemisen yhteydessä käydä päivittämässä.
 
-### Muuta
-Jos aikataulun puitteissa ehtii, niin luodaan myös kaveritoiminta ja etusivu, jossa kavereiden lukuedistymistä ja arvosteluja voi tarkkailla.
+### Jatkokehitys
+Arvostelujen ja oman tilin poistamistoiminnot eivät tämän kurssin ajan puitteessa toteutuneet, mutta ne voisi hyvä olla. Kirjojen lisäämiseen voisi kehittää admin/verifoitu käyttäjä -systeemin, ettei sinne lisättäisi virheellisiä tietueita.
 
 ### Alustava tietokantakaavio
 <img src="https://github.com/Juboskar/tsoha-projekti/blob/main/alustava_tietokantakaavio.png" width="1000">
