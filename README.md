@@ -28,6 +28,3 @@ Jokaisella käyttäjällä on oma hyllynäkymä, johon voi lisätä tietokannast
 
 ### Jatkokehitys
 Arvostelujen ja oman tilin poistamistoiminnot eivät tämän kurssin ajan puitteessa toteutuneet, mutta ne voisi hyvä olla. Kirjojen lisäämiseen voisi kehittää admin/verifoitu käyttäjä -systeemin, ettei sinne lisättäisi virheellisiä tietueita.
-
-### Alustava tietokantakaavio
-<img src="https://github.com/Juboskar/tsoha-projekti/blob/main/alustava_tietokantakaavio.png" width="1000">
