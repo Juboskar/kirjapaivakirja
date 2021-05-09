@@ -48,6 +48,11 @@ a {
     border-color: black;
 }
 
+.btn-light {
+  background-color: white;
+  border-color: white;
+}
+
 .form-control {
     border-color: black;
 }

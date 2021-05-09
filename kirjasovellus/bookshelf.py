@@ -50,3 +50,12 @@ def find_book_events(user_id: int, book_id: int):
         return events
     except exc.SQLAlchemyError:
         return None
+
+def delete_event(event_id: int):
+    try:   
+        sql = "DELETE FROM bookshelf_books WHERE id=:id"
+        db.session.execute(sql, {"id":event_id})
+        db.session.commit()
+        return True
+    except exc.SQLAlchemyError:
+        return False

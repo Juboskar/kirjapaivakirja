@@ -114,6 +114,14 @@ def update_progress():
     bookshelf.add_new_book_event(user_id, book_id, progress)
     return redirect("/bookshelf/progress/" + book_id)
 
+@app.route("/bookshelf/deleteevent", methods=["POST"])
+def delete_bookshelf_book():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
+    book_id = request.form["book_id"]
+    event_id = request.form["event_id"]
+    bookshelf.delete_event(event_id)
+    return redirect("/bookshelf/progress/" + book_id)
 
 # SEARCH
 
