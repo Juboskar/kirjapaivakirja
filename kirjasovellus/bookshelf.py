@@ -42,6 +42,15 @@ def find_all_books(user_id: int):
     except exc.SQLAlchemyError:
         return None
 
+def remove_from_bookshelf(user_id: int, book_id: int):
+    try:
+        sql = "DELETE FROM bookshelf_books WHERE user_id=:user_id AND book_id=:book_id"
+        db.session.execute(sql, {"user_id": user_id, "book_id": book_id})
+        db.session.commit()
+        return True
+    except exc.SQLAlchemyError:
+        return False
+
 def find_book_events(user_id: int, book_id: int):
     try:   
         sql = "SELECT * FROM bookshelf_books WHERE user_id=:user_id AND book_id=:book_id ORDER BY update_date DESC"
