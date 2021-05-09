@@ -59,7 +59,7 @@ def login_result():
         session["username"] = username
         session["csrf_token"] = urandom(16).hex()
     else:
-        # todo: nämä kovakoodaukset siirrettävä kyl html:ään
+        # todo: nämä kovakoodaukset siirrettävä html:ään
         login_status = "Virheellinen käyttäjätunnus tai salasana"
         return render_template("index.html", login_status=login_status)
     return redirect("/")
@@ -152,7 +152,8 @@ def add_book():
     if books.add_new_book(title, author, genre, isbn, pages):
         return redirect("/search")
     else:
-        return render_template("search.html", info="Jokin meni pieleen")
+        return render_template("search.html", info="Tietueen lisääminen epäonnistui. Tarkista tietojen oikeellisuus ja yritä uudelleen."
+        +"Sivunumeron on oltava lukuarvo")
 
 
 @app.route("/search/findbooks")
